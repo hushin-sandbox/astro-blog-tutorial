@@ -37,14 +37,14 @@
   }
 </style>
 
-<script is:inline>
+<script>
   document.addEventListener('astro:page-load', () => {
     const theme = (() => {
-      if (
-        typeof localStorage !== 'undefined' &&
-        localStorage.getItem('theme')
-      ) {
-        return localStorage.getItem('theme');
+      if (typeof localStorage !== 'undefined') {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme) {
+          return storedTheme;
+        }
       }
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         return 'dark';
@@ -70,7 +70,7 @@
 
     document
       .getElementById('themeToggle')
-      .addEventListener('click', handleToggleClick);
+      ?.addEventListener('click', handleToggleClick);
   });
 </script>
 

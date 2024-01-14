@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
+import { fade } from 'astro:transitions';
 
 type Props = CollectionEntry<'posts'>['data'];
 const { title, pubDate, description, author, image, tags } = Astro.props;
@@ -8,8 +9,8 @@ const { title, pubDate, description, author, image, tags } = Astro.props;
 
 <BaseLayout pageTitle={title}>
   <p>{pubDate.toString()}</p>
-  <p><em>{description}</em></p>
-  <p>著者: {author}</p>
+  <p transition:animate={fade({ duration: '2s' })}><em>{description}</em></p>
+  <p>著者: <a href="/about/">{author}</a></p>
   <img src={image.url} width="300" alt={image.alt} />
   <div class="tags">
     {
