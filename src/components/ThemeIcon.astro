@@ -81,3 +81,9 @@
       : document.documentElement.classList.add('light');
   });
 </script>
+
+<script is:inline>
+  localStorage.theme === 'dark'
+    ? document.documentElement.classList.add('dark')
+    : document.documentElement.classList.add('light');
+</script>
